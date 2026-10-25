@@ -1,0 +1,36 @@
+/* Papildinājumi pēc veikala labojumiem */
+
+/* Piezīme par kafiju sākumā */
+.hero-coffee {
+margin: 1.25rem auto 0;
+max-width: 30rem;
+font: 400 1.05rem/1.4 var(--display);
+color: var(--gold-light);
+}
+
+/* Grāmatu vāki ir gandrīz kvadrāti: lielais foto arī telefonā kvadrātā, lai cena uz foto netiek nogriezta */
+.hg-main img { aspect-ratio: 1; }
+
+/* Cena + piezīme (piem. “/ grāmata”) */
+.product-price { font-size: 1.1rem; }
+
+/* Paziņojums “Teksts nokopēts” */
+.toast {
+position: fixed; left: 50%; bottom: 1.25rem; z-index: 60;
+transform: translateX(-50%);
+width: max-content; max-width: calc(100% - 2rem);
+padding: 0.85rem 1.25rem;
+background: var(--gold); color: var(--bg);
+font: 600 0.9rem/1.3 var(--sans);
+text-align: center;
+box-shadow: 0 0.5rem 1.5rem rgba(42, 38, 33, 0.25);
+}
+
+/* Animācijas (js/main.js): sākuma teksts neredzams, kamēr Motion to neparāda */
+.anim .hero .wrap > :not(.hero-gallery) { opacity: 0; }
+
+/* Prece, uz kuru atvērta saite #prece-… */
+.product.is-target .product-media {
+outline: 2px solid var(--gold-light);
+outline-offset: 3px;
+}
