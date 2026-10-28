@@ -4,7 +4,7 @@ Preču katalogs.
 Lauki:
 id — unikāls, bez atstarpēm (piem. "gramata-01")
 name — nosaukums (latviski; krievu nosaukumus nerakstām)
-category — galvenā nodaļa: gramatas, davanas, ziemassvetki, maksla
+category — galvenā nodaļa: gramatas, davanas, ziemassvetki, trauki
 also — papildu nodaļas, kurās prece arī redzama (piem. ["ziemassvetki"])
 price — cena eiro (piem. 12.5). null = “Cena pēc pieprasījuma” un poga “Jautāt”
 priceNote — teksts pēc cenas (piem. "/ grāmata")
@@ -16,7 +16,7 @@ window.CATEGORIES = [
 { id: "davanas", name: "Garšīgas dāvanas" },
 { id: "gramatas", name: "Grāmatas" },
 { id: "ziemassvetki", name: "Ziemassvētki" },
-{ id: "maksla", name: "Māksla un dekors" }
+{ id: "trauki", name: "Trauki un interjers" }
 ];
 
 window.PRODUCTS = [
@@ -35,13 +35,13 @@ window.PRODUCTS = [
 
 // Grāmatas: jaunumi 20. okt.
 { id: "gramata-j01", name: "Grāmata", category: "gramatas", also: ["ziemassvetki"], price: 18, image: "images/jaunumi/01.jpg" },
-{ id: "gramata-parsteigums", name: "Grāmata-pārsteigums", category: "gramatas", price: 11, priceNote: "/ grāmata", image: "images/jaunumi/02.jpg", note: "Grāmata dāvanu iesaiņojumā" },
+{ id: "gramata-parsteigums", name: "Grāmata-pārsteigums", category: "gramatas", also: ["ziemassvetki"], price: 11, priceNote: "/ grāmata", image: "images/jaunumi/02.jpg", note: "Grāmata dāvanu iesaiņojumā" },
 { id: "gramata-j03", name: "Grāmata", category: "gramatas", price: 23, image: "images/jaunumi/03.jpg" },
 { id: "gramata-j04", name: "Grāmata", category: "gramatas", price: 15, image: "images/jaunumi/04.jpg" },
 { id: "gramata-j05", name: "Grāmata", category: "gramatas", price: 13, image: "images/jaunumi/05.jpg" },
 { id: "gramata-j06", name: "Grāmata", category: "gramatas", price: 17, image: "images/jaunumi/06.jpg" },
 { id: "gramata-j07", name: "Grāmata", category: "gramatas", price: 18, image: "images/jaunumi/07.jpg" },
-{ id: "gramata-j08", name: "Grāmata", category: "gramatas", price: null, image: "images/jaunumi/08.jpg" },
+{ id: "gramata-j08", name: "Grāmata", category: "gramatas", price: 11.5, image: "images/jaunumi/08.jpg" },
 { id: "gramata-j09", name: "Grāmata", category: "gramatas", price: 8.5, image: "images/jaunumi/09.jpg" },
 { id: "gramata-j10", name: "Grāmata", category: "gramatas", price: 22.95, image: "images/jaunumi/10.jpg" },
 { id: "gramata-j11", name: "Grāmata", category: "gramatas", also: ["ziemassvetki"], price: 11.5, image: "images/jaunumi/11.jpg" },
@@ -99,7 +99,7 @@ window.PRODUCTS = [
 { id: "laurence-cherry", name: "Laurence Dark Chocolate Cherry", category: "davanas", price: 8.2, image: "images/laurence-cherry.jpg" },
 { id: "laurence-mandeles", name: "Laurence Dark Chocolate ar mandelēm", category: "davanas", price: 8.2, image: "images/laurence-mandeles.jpg" },
 { id: "konfekte", name: "Šokolādes konfekte", category: "davanas", price: 0.8, priceNote: "/ gab.", image: "images/konfekte.jpg" },
-{ id: "kaste-medus-sokolade", name: "Dāvanu kaste ar medu un karsto šokolādi", category: "davanas", price: null, image: "images/davanu-kaste.jpg" },
+{ id: "kaste-medus-sokolade", name: "Dāvanu kaste ar medu un karsto šokolādi", category: "davanas", also: ["ziemassvetki"], price: null, image: "images/davanu-kaste.jpg" },
 
 // Ziemassvētki
 { id: "eglites-rotajums-n87", name: "Eglītes rotājums «Mēness»", category: "ziemassvetki", price: 7.8, image: "images/jaunumi/n87.jpg" },
@@ -122,26 +122,26 @@ window.PRODUCTS = [
 { id: "sveces-eglite-n83", name: "9 aromātiskās sveces ar koka eglīti", category: "ziemassvetki", price: 10, image: "images/jaunumi/n83.jpg" },
 { id: "svece-iesainojuma-n104", name: "Svece dāvanu iesaiņojumā", category: "ziemassvetki", price: 4.2, image: "images/jaunumi/n104.jpg" },
 
-// Māksla un dekors
-{ id: "glezna-rudens-koki", name: "Glezna ar rudens kokiem", category: "maksla", price: 88, image: "images/glezna-koki.jpg", note: "150 × 50 cm", wide: true },
-{ id: "vaze-01", name: "Dekoratīva vāze", category: "maksla", price: 32, image: "images/vaze.jpg" },
-{ id: "keramikas-vaze-n46", name: "Keramikas vāze", category: "maksla", price: 21, image: "images/jaunumi/n46.jpg", note: "35 cm" },
-{ id: "granatabols-n76", name: "Dekoratīva lādīte «Granātābols»", category: "maksla", price: 12, image: "images/jaunumi/n76.jpg" },
-{ id: "drebju-aki-n48", name: "Drēbju āķis «Lauva»", category: "maksla", price: 15, priceNote: "/ gab.", image: "images/jaunumi/n48.jpg" },
-{ id: "teja-servize-n57", name: "Vintage tējas servīze", category: "maksla", price: 39.2, image: "images/jaunumi/n57.jpg", note: "Tējkanna, 2 tases un vāze" },
-{ id: "japanu-teja-n85", name: "Japāņu tējas komplekts", category: "maksla", price: 48.5, image: "images/jaunumi/n85.jpg", note: "6 tasītes" },
-{ id: "vintage-skivis-n56", name: "Vintage stikla šķīvis", category: "maksla", price: 8.5, image: "images/jaunumi/n56.jpg" },
-{ id: "tase-iesainojuma-n63", name: "Tase ar apakštasīti dāvanu iesaiņojumā", category: "maksla", price: 11.7, image: "images/jaunumi/n63.jpg" },
-{ id: "tase-iesainojuma-n64", name: "Tase dāvanu iesaiņojumā", category: "maksla", price: 12, image: "images/jaunumi/n64.jpg" },
-{ id: "kristala-vaze-n49", name: "Maza kristāla vāze", category: "maksla", price: 15, image: "images/jaunumi/n49.jpg" },
-{ id: "kristala-bloda-n51", name: "Kristāla bļoda", category: "maksla", price: 18, image: "images/jaunumi/n51.jpg", note: "14,5 cm" },
-{ id: "kristala-trauki-n52", name: "Vintage kristāla trauki", category: "maksla", price: 19, priceNote: "/ gab.", image: "images/jaunumi/n52.jpg" },
-{ id: "kristala-bloda-n54", name: "Vintage kristāla bļoda", category: "maksla", price: 19.5, image: "images/jaunumi/n54.jpg" },
-{ id: "kristala-vazite-n55", name: "Kristāla vāzīte sīkumiem", category: "maksla", price: 18, priceNote: "/ gab.", image: "images/jaunumi/n55.jpg" },
-{ id: "svece-vina-n84", name: "Svece vīna glāzē", category: "maksla", price: 14.5, image: "images/jaunumi/n84.jpg" },
-{ id: "svece-sampanietis-n86", name: "Svece šampanieša glāzē", category: "maksla", price: 14, image: "images/jaunumi/n86.jpg" },
-{ id: "sveces-blocins-n82", name: "9 aromātiskās sveces un blociņš", category: "maksla", price: 10, image: "images/jaunumi/n82.jpg" },
-{ id: "svece-n81", name: "Svece", category: "maksla", price: 3, priceNote: "/ gab.", image: "images/jaunumi/n81.jpg" },
-{ id: "kaklarota-n60", name: "Kaklarota", category: "maksla", price: 30, image: "images/jaunumi/n60.jpg" },
-{ id: "aproce-n61", name: "Aproce", category: "maksla", price: 25, priceNote: "/ gab.", image: "images/jaunumi/n61.jpg" }
+// Trauki un interjers
+{ id: "glezna-rudens-koki", name: "Glezna ar rudens kokiem", category: "trauki", price: 88, image: "images/glezna-koki.jpg", note: "150 × 50 cm", wide: true },
+{ id: "vaze-01", name: "Dekoratīva vāze", category: "trauki", price: 32, image: "images/vaze.jpg" },
+{ id: "keramikas-vaze-n46", name: "Keramikas vāze", category: "trauki", price: 21, image: "images/jaunumi/n46.jpg", note: "35 cm" },
+{ id: "granatabols-n76", name: "Dekoratīva lādīte «Granātābols»", category: "trauki", price: 12, image: "images/jaunumi/n76.jpg" },
+{ id: "drebju-aki-n48", name: "Drēbju āķis «Lauva»", category: "trauki", price: 15, priceNote: "/ gab.", image: "images/jaunumi/n48.jpg" },
+{ id: "teja-servize-n57", name: "Vintage tējas servīze", category: "trauki", price: 100, image: "images/jaunumi/n57.jpg", note: "Tējkanna, 2 tases un vāze" },
+{ id: "japanu-teja-n85", name: "Japāņu tējas komplekts", category: "trauki", also: ["ziemassvetki"], price: 48.5, image: "images/jaunumi/n85.jpg", note: "6 tasītes" },
+{ id: "vintage-skivis-n56", name: "Vintage stikla šķīvis", category: "trauki", price: 8.5, image: "images/jaunumi/n56.jpg" },
+{ id: "tase-iesainojuma-n63", name: "Tase ar apakštasīti dāvanu iesaiņojumā", category: "trauki", also: ["ziemassvetki"], price: 11.7, image: "images/jaunumi/n63.jpg" },
+{ id: "tase-iesainojuma-n64", name: "Tase dāvanu iesaiņojumā", category: "trauki", also: ["ziemassvetki"], price: 12, image: "images/jaunumi/n64.jpg" },
+{ id: "kristala-vaze-n49", name: "Maza kristāla vāze", category: "trauki", price: 15, image: "images/jaunumi/n49.jpg" },
+{ id: "kristala-bloda-n51", name: "Kristāla bļoda", category: "trauki", price: 18, image: "images/jaunumi/n51.jpg", note: "14,5 cm" },
+{ id: "kristala-trauki-n52", name: "Vintage kristāla trauki", category: "trauki", price: 19, priceNote: "/ gab.", image: "images/jaunumi/n52.jpg" },
+{ id: "kristala-bloda-n54", name: "Vintage kristāla bļoda", category: "trauki", price: 19.5, image: "images/jaunumi/n54.jpg" },
+{ id: "kristala-vazite-n55", name: "Kristāla vāzīte sīkumiem", category: "trauki", price: 18, priceNote: "/ gab.", image: "images/jaunumi/n55.jpg" },
+{ id: "svece-vina-n84", name: "Svece vīna glāzē", category: "trauki", also: ["ziemassvetki"], price: 14.5, image: "images/jaunumi/n84.jpg" },
+{ id: "svece-sampanietis-n86", name: "Svece šampanieša glāzē", category: "trauki", price: 14, image: "images/jaunumi/n86.jpg" },
+{ id: "sveces-blocins-n82", name: "9 aromātiskās sveces un blociņš", category: "trauki", also: ["ziemassvetki"], price: 10, image: "images/jaunumi/n82.jpg" },
+{ id: "svece-n81", name: "Svece", category: "trauki", price: 3, priceNote: "/ gab.", image: "images/jaunumi/n81.jpg" },
+{ id: "kaklarota-n60", name: "Kaklarota", category: "trauki", price: 30, image: "images/jaunumi/n60.jpg" },
+{ id: "aproce-n61", name: "Aproce", category: "trauki", price: 25, priceNote: "/ gab.", image: "images/jaunumi/n61.jpg" }
 ];

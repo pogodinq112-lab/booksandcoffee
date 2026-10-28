@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Books &amp; Coffee">
 <meta property="og:title" content="Books &amp; Coffee | Grāmatas un dāvanas Rīgā">
 <meta property="og:description" content="Skaistas lietas, garšīgas dāvanas, grāmatas un kafija Stabu ielā 46/48, Rīgā.">
-<meta property="og:url" content="https://pogodinq112-lab.github.io/booksandcoffee/">
-<meta property="og:image" content="https://pogodinq112-lab.github.io/booksandcoffee/images/og.jpg">
+<meta property="og:url" content="https://booksandcoffee.netlify.app/">
+<meta property="og:image" content="https://booksandcoffee.netlify.app/images/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -38,8 +38,8 @@ setTimeout(function () { document.documentElement.classList.remove("anim"); }, 3
 "@type": "BookStore",
 "name": "Books & Coffee",
 "description": "Skaistas lietas, garšīgas dāvanas, grāmatas un kafija.",
-"url": "https://pogodinq112-lab.github.io/booksandcoffee/",
-"image": "https://pogodinq112-lab.github.io/booksandcoffee/images/og.jpg",
+"url": "https://booksandcoffee.netlify.app/",
+"image": "https://booksandcoffee.netlify.app/images/og.jpg",
 "address": {
 "@type": "PostalAddress",
 "streetAddress": "Stabu iela 46/48",
@@ -202,7 +202,22 @@ loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></ifr
 </div>
 </footer>
 
-<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+<div class="order-modal" id="pasutijums" hidden>
+<div class="order-backdrop" data-close></div>
+<div class="order-dialog" role="dialog" aria-modal="true" aria-labelledby="pasutijums-virsraksts" tabindex="-1">
+<button type="button" class="order-close" data-close aria-label="Aizvērt">×</button>
+<h2 id="pasutijums-virsraksts">Pasūtījums</h2>
+<div class="order-item">
+<img class="order-img" src="" alt="" width="64" height="64">
+<div><p class="order-name"></p><p class="order-price"></p></div>
+</div>
+<label class="visually-hidden" for="pasutijums-teksts">Ziņas teksts</label>
+<textarea class="order-text" id="pasutijums-teksts" rows="4" readonly></textarea>
+<a class="btn btn-gold order-go" href="https://ig.me/m/booksandcoffee.riga" target="_blank" rel="noopener">Kopēt un atvērt Direct</a>
+<p class="order-fail" role="alert" hidden>Nokopējiet tekstu manuāli un atveriet Direct</p>
+<p class="order-hint">Teksts tiks nokopēts. Directā turiet pirkstu uz ziņas lauka un izvēlieties “Ielīmēt”.</p>
+</div>
+</div>
 
 <script src="js/products.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/motion@11.11.13/dist/motion.js" defer></script>

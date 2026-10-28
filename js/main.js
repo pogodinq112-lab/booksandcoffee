@@ -5,7 +5,7 @@
 var CATS = window.CATEGORIES || [];
 var PRODUCTS = window.PRODUCTS || [];
 var DM = "https://ig.me/m/booksandcoffee.riga";
-var SITE = "https://pogodinq112-lab.github.io/booksandcoffee/";
+var SITE = "https://booksandcoffee.netlify.app/";
 
 document.getElementById("year").textContent = new Date().getFullYear();
 
@@ -134,16 +134,20 @@ f.setAttribute("aria-pressed", String(f.getAttribute("data-filter") === id));
 renderProducts(id);
 }
 
-/* ---------- Poga “Pasūtīt”: teksts starpliktuvē + Instagram Direct ---------- */
+/* ---------- Poga “Pasūtīt”: logs ar tekstu, tad kopēšana + Instagram Direct ---------- */
 
-var toast = document.getElementById("toast");
-var toastTimer;
-function showToast(msg) {
-toast.textContent = msg;
-toast.hidden = false;
-clearTimeout(toastTimer);
-toastTimer = setTimeout(function () { toast.hidden = true; }, 4000);
-}
+// Telefonā Instagram atveras ātrāk, nekā beidzas navigator.clipboard.writeText,
+// tāpēc vispirms logs, un teksts tiek nokopēts sinhroni pogas “Kopēt un atvērt Direct” klikšķī.
+
+var modal = document.getElementById("pasutijums");
+var dialog = modal.querySelector(".order-dialog");
+var orderImg = modal.querySelector(".order-img");
+var orderName = modal.querySelector(".order-name");
+var orderPrice = modal.querySelector(".order-price");
+var orderTa = modal.querySelector(".order-text");
+var orderGo = modal.querySelector(".order-go");
+var orderFail = modal.querySelector(".order-fail");
+var lastOrderBtn = null;
 
 function orderText(p) {
 var what = p.name + (typeof p.price === "number" ? ", " + price(p) : "");
@@ -151,33 +155,67 @@ var start = typeof p.price === "number" ? "Labdien! Vēlos pasūtīt: " : "Labdi
 return start + what + ". " + SITE + "#prece-" + p.id;
 }
 
-function copy(text) {
-if (navigator.clipboard && window.isSecureContext) {
-return navigator.clipboard.writeText(text);
-}
-return new Promise(function (resolve, reject) {
-var ta = document.createElement("textarea");
-ta.value = text;
-ta.setAttribute("readonly", "");
-ta.style.position = "fixed";
-ta.style.opacity = "0";
-document.body.appendChild(ta);
-ta.select();
-try { document.execCommand("copy") ? resolve() : reject(); } catch (err) { reject(err); }
-document.body.removeChild(ta);
-});
+function openOrder(p, btn) {
+lastOrderBtn = btn;
+orderImg.src = p.image || "";
+orderImg.hidden = !p.image;
+orderName.textContent = p.name;
+orderPrice.textContent = typeof p.price === "number" ? price(p) : "Cena pēc pieprasījuma";
+orderTa.value = orderText(p);
+orderFail.hidden = true;
+modal.hidden = false;
+document.body.classList.add("modal-open");
+dialog.focus();
 }
 
-// Saite atveras parastā veidā (target=_blank), teksts tiek nokopēts tajā pašā klikšķī
+function closeOrder() {
+if (modal.hidden) return;
+modal.hidden = true;
+document.body.classList.remove("modal-open");
+if (lastOrderBtn) lastOrderBtn.focus();
+}
+
+// Sinhroni, vēl pirms saite atver Instagram. Ja execCommand neizdodas, teksts paliek iezīmēts.
+function copyOrderText() {
+var ok = false;
+orderTa.readOnly = false;
+orderTa.focus({ preventScroll: true });
+orderTa.select();
+orderTa.setSelectionRange(0, 99999); // iOS
+try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+orderTa.readOnly = true;
+if (navigator.clipboard && window.isSecureContext) {
+navigator.clipboard.writeText(orderTa.value).catch(function () {});
+}
+orderFail.hidden = ok;
+}
+
 list.addEventListener("click", function (e) {
 var a = e.target.closest("[data-order]");
 if (!a) return;
 var id = a.getAttribute("data-order");
 var p = PRODUCTS.filter(function (x) { return x.id === id; })[0];
 if (!p) return;
-copy(orderText(p)).then(function () {
-showToast("Teksts nokopēts! Ielīmējiet to Directā.");
-}, function () {});
+e.preventDefault();
+openOrder(p, a);
+});
+
+// preventDefault te nav: saite atveras parastā veidā tajā pašā klikšķī
+orderGo.addEventListener("click", copyOrderText);
+
+modal.addEventListener("click", function (e) {
+if (e.target.closest("[data-close]")) closeOrder();
+});
+
+document.addEventListener("keydown", function (e) {
+if (modal.hidden) return;
+if (e.key === "Escape") { closeOrder(); return; }
+if (e.key !== "Tab") return;
+// Fokuss paliek logā
+var f = dialog.querySelectorAll("button, textarea, a[href]");
+var first = f[0], last = f[f.length - 1];
+if (e.shiftKey && (document.activeElement === first || document.activeElement === dialog)) { e.preventDefault(); last.focus(); }
+else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
 });
 
 /* ---------- Saite uz konkrētu preci (#prece-…) ---------- */
