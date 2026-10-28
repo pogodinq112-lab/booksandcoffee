@@ -5,7 +5,7 @@
 var CATS = window.CATEGORIES || [];
 var PRODUCTS = window.PRODUCTS || [];
 var DM = "https://ig.me/m/booksandcoffee.riga";
-var SITE = "https://booksandcoffee.netlify.app/";
+var SITE = "https://pogodinq112-lab.github.io/booksandcoffee/";
 
 document.getElementById("year").textContent = new Date().getFullYear();
 
