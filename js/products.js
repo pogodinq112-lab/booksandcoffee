@@ -128,7 +128,7 @@ window.PRODUCTS = [
 { id: "keramikas-vaze-n46", name: "Keramikas vāze", category: "trauki", price: 21, image: "images/jaunumi/n46.jpg", note: "35 cm" },
 { id: "granatabols-n76", name: "Dekoratīva lādīte «Granātābols»", category: "trauki", price: 12, image: "images/jaunumi/n76.jpg" },
 { id: "drebju-aki-n48", name: "Drēbju āķis «Lauva»", category: "trauki", price: 15, priceNote: "/ gab.", image: "images/jaunumi/n48.jpg" },
-{ id: "teja-servize-n57", name: "Vintage tējas servīze", category: "trauki", price: 100, image: "images/jaunumi/n57.jpg", note: "Tējkanna, 2 tases un vāze" },
+{ id: "teja-servize-n57", name: "Vintage tējas servīze", category: "trauki", price: 39.2, image: "images/jaunumi/n57.jpg", note: "Tējkanna, 2 tases un vāze" },
 { id: "japanu-teja-n85", name: "Japāņu tējas komplekts", category: "trauki", also: ["ziemassvetki"], price: 48.5, image: "images/jaunumi/n85.jpg", note: "6 tasītes" },
 { id: "vintage-skivis-n56", name: "Vintage stikla šķīvis", category: "trauki", price: 8.5, image: "images/jaunumi/n56.jpg" },
 { id: "tase-iesainojuma-n63", name: "Tase ar apakštasīti dāvanu iesaiņojumā", category: "trauki", also: ["ziemassvetki"], price: 11.7, image: "images/jaunumi/n63.jpg" },
