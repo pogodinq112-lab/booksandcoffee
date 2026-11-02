@@ -5,7 +5,7 @@
 var CATS = window.CATEGORIES || [];
 var PRODUCTS = window.PRODUCTS || [];
 var DM = "https://ig.me/m/booksandcoffee.riga";
-var SITE = "https://pogodinq112-lab.github.io/booksandcoffee/";
+var SITE = "https://booksandcoffee.online/";
 
 document.getElementById("year").textContent = new Date().getFullYear();
 
@@ -149,10 +149,13 @@ var orderGo = modal.querySelector(".order-go");
 var orderFail = modal.querySelector(".order-fail");
 var lastOrderBtn = null;
 
-function orderText(p) {
-var what = p.name + (typeof p.price === "number" ? ", " + price(p) : "");
+function shortNum(p) { var m = /-n(\d+)$/.exec(p.id); return m ? m[1] : ""; }
+  function shortCode(p) { return shortNum(p) || p.id; }
+
+  function orderText(p) {
+var what = p.name + (shortNum(p) ? " (Nr. " + shortNum(p) + ")" : "") + (typeof p.price === "number" ? ", " + price(p) : "");
 var start = typeof p.price === "number" ? "Labdien! Vēlos pasūtīt: " : "Labdien! Vēlos uzzināt cenu: ";
-return start + what + ". " + SITE + "#prece-" + p.id;
+return start + what + ". " + SITE + "#" + shortCode(p);
 }
 
 function openOrder(p, btn) {
@@ -223,9 +226,11 @@ else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); f
 renderProducts("visas");
 
 function openFromHash() {
-var m = /^#prece-(.+)$/.exec(location.hash);
+var m = /^#(.+)$/.exec(location.hash);
 if (!m) return;
-var el = document.getElementById("prece-" + decodeURIComponent(m[1]));
+var key = decodeURIComponent(m[1]).replace(/^prece-/, "");
+    var hit = PRODUCTS.filter(function (p) { return p.id === key || shortCode(p) === key; })[0];
+    var el = hit && document.getElementById("prece-" + hit.id);
 if (!el) return;
 el.scrollIntoView({ block: "center" });
 el.classList.add("is-target");
