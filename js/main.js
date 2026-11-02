@@ -89,6 +89,7 @@ var hasPrice = typeof p.price === "number";
 return '<li class="product' + (p.wide ? " product-wide" : "") + '" id="prece-' + esc(p.id) + '">' +
 '<div class="product-media">' + media + "</div>" +
 '<div class="product-body">' +
+(shortNum(p) ? '<span class="product-nr">Nr. ' + shortNum(p) + "</span>" : "") +
 '<h4 class="product-name">' + esc(p.name) + "</h4>" +
 (p.note ? '<p class="product-note">' + esc(p.note) + "</p>" : "") +
 '<div class="product-foot">' +
@@ -149,7 +150,7 @@ var orderGo = modal.querySelector(".order-go");
 var orderFail = modal.querySelector(".order-fail");
 var lastOrderBtn = null;
 
-function shortNum(p) { var m = /-n(\d+)$/.exec(p.id); return m ? m[1] : ""; }
+function shortNum(p) { if (p.nr) return String(p.nr); var m = /-n(\d+)$/.exec(p.id); return m ? m[1] : ""; }
   function shortCode(p) { return shortNum(p) || p.id; }
 
   function orderText(p) {
